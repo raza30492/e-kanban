@@ -99,6 +99,7 @@ class Followup extends Component {
     /////// calculate followup date filter items desc sorted///////////
     let dateSet = new Set();
     orderedInv.forEach(o => dateSet.add(o.followupDate));
+    dateSet.add(moment(new Date()).utcOffset('+05:30').format('DD MMM, YY'));
     let dateFilterItems = [];
     dateFilterItems.push({label: 'All', value: undefined});
     dateSet.forEach(date => dateFilterItems.push({label: date, value: date}));

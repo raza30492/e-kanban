@@ -157,14 +157,16 @@ class Tracking extends Component {
     let {category: {products}, supplier: {suppliers}, inventory: {orders}, user: {users}} = props;
     let orderedInv = [];
     orders = orders.filter(o => o.orderState == 'ORDERED');
+    let todayMillis = new Date().getTime();
+    let oneDayMillis = 24*60*60*1000;
     orders.forEach(o => {
       const p = products.find(prod => prod.id == o.productId);
       const s = suppliers.find(s => s.id == o.supplierId);
       const supplierName = (s == undefined) ? 'Blank' : s.name;
       const u = users.find(user => user.id == o.orderedBy);
       let orderedBy = (u == undefined) ? '' : u.name;
-
-      if (p != undefined) {
+      let delay = moment(todayMillis).diff(o.orderedAt + (p.timeProduction + p.timeTransportation)*oneDayMillis, 'days');
+      if (p != undefined && delay <= 0) {
         orderedInv.push({productId: p.productId, itemCode: p.itemCode, productName: p.name, supplierName, binSize: p.binQty + ' ' + p.uomPurchase,
           bins: o.bins, noOfBins: getNoOfBins(o.bins), orderedAt: o.orderedAt,orderedBy,tat: p.timeProduction + p.timeTransportation, 
           classType: p.classType, category: p.category.name,binQty: p.binQty, uom: p.uomPurchase});
