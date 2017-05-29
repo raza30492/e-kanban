@@ -1,23 +1,30 @@
 module.exports = {
   "app_name_short": "e-Kanban",
   "app_name_full": "e-Kanban",
+  "app_name_help": "e-Kanban Online Help",
   "app_version": "1.02",
   "company_name": "Raza Enterprises",
 
   /*/////////////////// Label /////////////////////*/
   "label_home": "Home",
   "label_user": "User",
+  "label_report": "Report",
   "label_category": "Category",
   "label_sub_category": "Sub Category",
   "label_product": "Product",
   "label_section": "Section",
   "label_supplier": "Supplier",
+
   "label_tracking": "Order Tracking",
+  "label_followup": "Followup",
+
   "label_stock": "Stock",
-  "label_awitingOrder": "Awaiting Order",
+  "label_awiting_order": "Awaiting Order",
   "label_generate_barcode": "Generate Barcode",
   "label_inward_scan": "Inward Scan",
   "label_outward_scan": "Outward Scan",
+
+
   "label_test": "Test Page",
 
 

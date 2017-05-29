@@ -101,8 +101,10 @@ class Stock extends Component {
   //   this.props.dispatch(syncInventory());
   // }
   //
-  // _onHelpClick () {
-  //   console.log('_onHelpClick');
+  //   _onHelpClick () {
+  //   localStorage.page = '/stock';
+  //   const helpUrl = window.baseUrl + "/help";
+  //   window.open(helpUrl);
   // }
   //
   // _renderStock () {

@@ -38,6 +38,7 @@ class AppHeader extends Component {
     delete sessionStorage.email;
     delete sessionStorage.username;
     delete sessionStorage.role;
+    delete localStorage.role;
     delete sessionStorage.session;
   }
 

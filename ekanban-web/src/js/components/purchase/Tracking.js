@@ -350,7 +350,9 @@ class Tracking extends Component {
   }
 
   _onHelpClick () {
-    console.log('_onHelpClick');
+    localStorage.page = '/tracking';
+    const helpUrl = window.baseUrl + "/help";
+    window.open(helpUrl);
   }
 
   _onViewClick (index) {

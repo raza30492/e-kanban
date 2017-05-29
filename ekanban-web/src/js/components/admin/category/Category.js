@@ -101,7 +101,8 @@ class Category extends Component {
   }
 
   _onHelpClick () {
-    const helpUrl = window.baseUrl + "/help/category";
+    localStorage.page = '/category';
+    const helpUrl = window.baseUrl + "/help";
     window.open(helpUrl);
   }
 

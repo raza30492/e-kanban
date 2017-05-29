@@ -84,9 +84,15 @@ public class Application extends SpringBootServletInitializer {
     }
 
     @GetMapping(value = "/")
-    public String hello() {
+    public String homePage() {
         logger.debug("home page");
         return "index";
+    }
+
+    @GetMapping(value = "/help")
+    public String helpPage() {
+        logger.debug("Help page");
+        return "help";
     }
 
 }

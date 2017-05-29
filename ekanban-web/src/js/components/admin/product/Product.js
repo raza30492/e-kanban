@@ -236,7 +236,8 @@ class Product extends Component {
   }
 
   _onHelpClick () {
-    const helpUrl = window.baseUrl + "/help/product";
+    localStorage.page = '/product';
+    const helpUrl = window.baseUrl + "/help";
     window.open(helpUrl);
   }
 

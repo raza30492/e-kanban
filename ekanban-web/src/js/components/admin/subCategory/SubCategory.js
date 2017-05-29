@@ -192,7 +192,8 @@ class SubCategory extends Component {
   }
 
   _onHelpClick () {
-    const helpUrl = window.baseUrl + "/help/subCategory";
+    localStorage.page = '/subCategory';
+    const helpUrl = window.baseUrl + "/help";
     window.open(helpUrl);
   }
 

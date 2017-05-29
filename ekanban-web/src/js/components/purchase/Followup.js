@@ -148,7 +148,9 @@ class Followup extends Component {
   }
 
   _onHelpClick () {
-    
+    localStorage.page = '/followup';
+    const helpUrl = window.baseUrl + "/help";
+    window.open(helpUrl);
   }
 
   _onFollowUp () {

@@ -246,7 +246,9 @@ class AwaitingOrder extends Component {
   }
 
   _onHelpClick () {
-    console.log('_onHelpClick');
+    localStorage.page = '/awaitingOrder';
+    const helpUrl = window.baseUrl + "/help";
+    window.open(helpUrl);
   }
 
   _onViewClick (index) {

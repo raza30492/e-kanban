@@ -3,6 +3,7 @@ import Main from "./components/Main";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Reports from './components/Reports';
+import Help from './components/Help';
 
 import Category from "./components/admin/category/Category";
 import Product from "./components/admin/product/Product";
@@ -35,6 +36,7 @@ export default {
     { path: 'dashboard', component: Dashboard},
     { path: 'profile', component: Profile},
     { path: 'reports', component: Reports},
+    { path: '/help', component: Help},
 
     { path: 'category', component: Category},
     { path: 'product', component: Product},

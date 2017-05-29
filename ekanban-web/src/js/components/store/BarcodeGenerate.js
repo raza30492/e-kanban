@@ -61,7 +61,9 @@ class BarcodeGenerate extends Component {
   }
 
   _onHelpClick () {
-
+    localStorage.page = '/generateBarcode';
+    const helpUrl = window.baseUrl + "/help";
+    window.open(helpUrl);
   }
 
   _onPrint (productId) {

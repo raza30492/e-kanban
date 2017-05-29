@@ -113,8 +113,10 @@ class Sections extends Component {
     this.setState({section: {...this.state.sections[index]}});
     this.props.dispatch({type: c.SECTION_EDIT_FORM_TOGGLE, payload: {editing: true}});
   }
+
   _onHelpClick () {
-    const helpUrl = window.baseUrl + "/help/section";
+    localStorage.page = '/section';
+    const helpUrl = window.baseUrl + "/help";
     window.open(helpUrl);
   }
 

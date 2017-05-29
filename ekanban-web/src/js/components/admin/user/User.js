@@ -165,7 +165,9 @@ class User extends Component {
   }
 
   _onHelpClick () {
-    console.log('_onHelpClick');
+    localStorage.page = '/user';
+    const helpUrl = window.baseUrl + "/help";
+    window.open(helpUrl);
   }
 
   _onSearch (event) {

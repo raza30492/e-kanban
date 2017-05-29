@@ -151,7 +151,8 @@ class Supplier extends Component {
   }
 
   _onHelpClick () {
-    const helpUrl = window.baseUrl + "/help/supplier";
+    localStorage.page = '/supplier';
+    const helpUrl = window.baseUrl + "/help";
     window.open(helpUrl);
   }
 

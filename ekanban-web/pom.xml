@@ -170,6 +170,8 @@
                                 <echo message="${project.basedir}" />
                                 <copy overwrite="true" file="${project.basedir}/dist/index.js" todir="src/main/webapp/static"/>
                                 <copy overwrite="true" file="${project.basedir}/dist/index.js" todir="${project.basedir}/../src/main/webapp/static"/>
+                                <copy overwrite="true" file="${project.basedir}/dist/help.js" todir="src/main/webapp/static"/>
+                                <copy overwrite="true" file="${project.basedir}/dist/help.js" todir="${project.basedir}/../src/main/webapp/static"/>
                             </target>
                         </configuration>
                     </execution>

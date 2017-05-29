@@ -14,13 +14,4 @@ export default {
   mainScss: 'src/scss/index.scss',
   devServerPort: 9000,
   eslintOverride: path.resolve(__dirname, 'customEslintrc'),
-  webpack:{
-    entry: {
-      index: __dirname + '/src/js/index.js',
-      help: __dirname + '/src/js/help.js'
-    },
-    output: {
-      filename: '[name].js'
-    }
-  }
 };

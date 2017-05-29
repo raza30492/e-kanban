@@ -10,7 +10,9 @@ const initialState = {
     { path: '/subCategory', label: 'Sub Category'},
     { path: '/section', label: 'Section'},
     { path: '/supplier', label: 'Supplier'},
-    { path: '/product', label: 'Product'}
+    { path: '/product', label: 'Product'},
+    { path: '/help', label: 'Help'}
+
   ],
   itemsStore:[
      { path: '/dashboard', label: 'Dashboard'},
@@ -19,17 +21,20 @@ const initialState = {
      { path: '/outward', label: 'Outward Scan'},
      { path: '/awaiting', label: 'Awaiting Order'},
      { path: '/barcode', label: 'Generate Barcode'},
-     { path: '/stock', label: 'Stock'}
+     { path: '/stock', label: 'Stock'},
+     { path: '/help', label: 'Help'}
 
   ],
   itemsPurchase:[
      { path: '/dashboard', label: 'Dashboard'},
      { path: '/reports', label: 'Reports'},
      { path: '/tracking', label: 'Tracking'},
-     { path: '/followup', label: 'Follow Up'}
+     { path: '/followup', label: 'Follow Up'},
+     { path: '/help', label: 'Help'}
   ],
   itemsUser:[
-     { path: '/dashboard', label: 'Dashboard'}
+     { path: '/dashboard', label: 'Dashboard'},
+     { path: '/help', label: 'Help'}
   ]
 };
 
