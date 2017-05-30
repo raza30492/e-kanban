@@ -4,7 +4,6 @@ import { localeData } from '../../../reducers/localization';
 import {addSupplier}  from '../../../actions/supplier';
 import {SUPPLIER_CONSTANTS as c}  from '../../../utils/constants';
 
-import AppHeader from '../../AppHeader';
 import Article from 'grommet/components/Article';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
@@ -98,7 +97,6 @@ class SupplierAdd extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Section>
           <Article align="center" pad={{horizontal: 'medium'}} primary={true}>
             <Form onSubmit={this._onSubmit}>

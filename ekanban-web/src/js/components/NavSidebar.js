@@ -31,6 +31,11 @@ class NavSidebar extends Component {
     this.props.dispatch(navActivate(false));
   }
 
+  _onHelpClick () {
+    const helpUrl = window.baseUrl + "/help";
+    window.open(helpUrl);
+  }
+
   render () {
     const { itemsAdmin, itemsStore, itemsPurchase, itemsUser} = this.props.nav;
     const { role } = window.sessionStorage;
@@ -58,6 +63,7 @@ class NavSidebar extends Component {
         </Header>
         <Menu fill={true} primary={true}>
           {links}
+          <Anchor label="Help" onClick={this._onHelpClick.bind(this)}/>
         </Menu>
         <Footer pad={{horizontal: 'medium', vertical: 'small'}}>
           <h5> (c)2017 {this.localeData.company_name}</h5>

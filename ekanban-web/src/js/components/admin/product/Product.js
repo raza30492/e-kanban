@@ -7,7 +7,6 @@ import {getMonth,getItemMasterHeader,getItemMasterBody}  from '../../../utils/mi
 import {PRODUCT_CONSTANTS as c}  from '../../../utils/constants';
 import {CSVLink} from 'react-csv';
 
-import AppHeader from '../../AppHeader';
 import Add from "grommet/components/icons/base/Add";
 import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
@@ -441,8 +440,6 @@ class Product extends Component {
 
     return (
       <Box full='horizontal'>
-        <AppHeader/>
-
         <Header size='large' pad={{ horizontal: 'medium' }}>
           <Title>
             <span>{this.localeData.label_product}</span>

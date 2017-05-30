@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 // import {getNoOfBins} from '../../utils/miscUtil';
 //import moment from 'moment';
 
-import AppHeader from '../AppHeader';
 import Box from 'grommet/components/Box';
 // import Button from 'grommet/components/Button';
 import Section from 'grommet/components/Section';
@@ -159,7 +158,6 @@ class Stock extends Component {
   //
   //   return (
   //     <Box>
-  //       <AppHeader/>
   //       <Header size='large' pad={{ horizontal: 'medium' }}>
   //         <Title responsive={false}>
   //           <span>{this.localeData.label_stock}</span>
@@ -181,7 +179,6 @@ class Stock extends Component {
   render () {
     return (
       <Box>
-        <AppHeader/>
         <Header size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>Stock</span>

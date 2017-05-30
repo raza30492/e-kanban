@@ -5,7 +5,6 @@ import {initialize} from '../../actions/misc';
 import {updateInventory} from '../../actions/inventory';
 import {BIN_STATE as bs} from '../../utils/constants';
 
-import AppHeader from '../AppHeader';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Section from 'grommet/components/Section';
@@ -198,7 +197,6 @@ class OutwardScan extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Section>
           <Box size='medium' alignSelf='center' pad={{vertical: 'large'}}>
             <input type='text' name='productId' id='barCodeInput' value={binId} placeholder="Enter or Scan Product Id" autoFocus onChange={this._onChange.bind(this)} />

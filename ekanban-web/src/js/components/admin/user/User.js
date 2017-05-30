@@ -5,7 +5,6 @@ import {initialize}  from '../../../actions/misc';
 import {addUser,removeUser,updateUser}  from '../../../actions/user';
 import {USER_CONSTANTS as u, USER_ROLES as ur} from '../../../utils/constants';
 
-import AppHeader from '../../AppHeader';
 import UserFilter from './UserFilter';
 import Add from "grommet/components/icons/base/Add";
 import Box from 'grommet/components/Box';
@@ -328,7 +327,6 @@ class User extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Header fixed={true} size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_user}</span>

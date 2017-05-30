@@ -5,7 +5,6 @@ import {initialize} from '../actions/misc';
 import {changePassword} from '../actions/user';
 //import {USER_CONSTANTS as c}  from '../utils/constants';
 
-import AppHeader from './AppHeader';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
@@ -156,7 +155,6 @@ class Profile extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Section>
           <Box size="large" alignSelf="center">
             <Box pad={{vertical: 'medium'}}>

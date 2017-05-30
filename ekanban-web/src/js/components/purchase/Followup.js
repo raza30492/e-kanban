@@ -7,7 +7,6 @@ import {followupOrders} from '../../actions/order';
 import {getNoOfBins} from '../../utils/miscUtil';
 import moment from 'moment';
 
-import AppHeader from '../AppHeader';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import CheckBox from 'grommet/components/CheckBox';
@@ -284,7 +283,7 @@ class Followup extends Component {
       );
     } else {
       return (
-        <Box size="medium" alignSelf="center" pad={{horizontal:'medium'}}>
+        <Box alignSelf="center" pad={{horizontal:'medium'}}>
           <h3>No Orders to follow up</h3>
         </Box>
       );
@@ -310,7 +309,6 @@ class Followup extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Header size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>Followup</span>

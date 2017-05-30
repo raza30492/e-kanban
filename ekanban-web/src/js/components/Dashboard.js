@@ -91,7 +91,6 @@ class Dashboard extends Component {
 
     return (
       <Box>
-        <AppHeader />
         <Section direction="column" pad={{vertical: 'large', horizontal:'small'}}>
 
         <Tiles fill={true}

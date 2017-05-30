@@ -8,8 +8,6 @@ import {getNoOfBins} from '../../utils/miscUtil';
 import {ORDER_CONSTANTS as c} from '../../utils/constants';
 import moment from 'moment';
 
-
-import AppHeader from '../AppHeader';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Section from 'grommet/components/Section';
@@ -694,7 +692,7 @@ class Tracking extends Component {
       );
     } else {
       return (
-        <Box size="medium" alignSelf="center" pad={{horizontal:'medium'}}>
+        <Box alignSelf="center" pad={{horizontal:'medium'}}>
           <h3>No Delayed Orders available</h3>
         </Box>
       );
@@ -727,7 +725,6 @@ class Tracking extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Header size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_tracking}</span>

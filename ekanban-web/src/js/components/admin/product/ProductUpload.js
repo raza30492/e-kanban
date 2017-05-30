@@ -5,7 +5,6 @@ import {initialize}  from '../../../actions/misc';
 import {uploadProducts}  from '../../../actions/product';
 import {PRODUCT_CONSTANTS as c}  from '../../../utils/constants';
 
-import AppHeader from '../../AppHeader';
 import Article from 'grommet/components/Article';
 import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
@@ -147,7 +146,6 @@ class ProductUpload extends Component {
 
     return (
       <Box>
-        <AppHeader page={this.localeData.label_test}/>
         <Section>
           <Article align="center" pad={{horizontal: 'medium'}} primary={true}>
             <Form onSubmit={this._onSubmit.bind(this)}>

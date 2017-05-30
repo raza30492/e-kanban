@@ -6,7 +6,6 @@ import {addCategory,removeCategory,updateCategory}  from '../../../actions/categ
 import {initialize}  from '../../../actions/misc';
 import {CATEGORY_CONSTANTS as c}  from '../../../utils/constants';
 
-import AppHeader from '../../AppHeader';
 import Add from "grommet/components/icons/base/Add";
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
@@ -177,7 +176,6 @@ class Category extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Header size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_category}</span>

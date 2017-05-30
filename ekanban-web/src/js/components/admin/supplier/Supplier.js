@@ -5,7 +5,6 @@ import {initialize}  from '../../../actions/misc';
 import {removeSupplier}  from '../../../actions/supplier';
 import {SUPPLIER_CONSTANTS as c}  from '../../../utils/constants';
 
-import AppHeader from '../../AppHeader';
 import Add from "grommet/components/icons/base/Add";
 import Anchor from 'grommet/components/Anchor';
 import Box from 'grommet/components/Box';
@@ -277,8 +276,6 @@ class Supplier extends Component {
 
     return (
       <Box full='horizontal'>
-        <AppHeader/>
-
         <Header fixed={true} size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_supplier}</span>

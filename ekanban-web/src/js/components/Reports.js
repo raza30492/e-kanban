@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 // import {getNoOfBins} from '../../utils/miscUtil';
 //import moment from 'moment';
 
-import AppHeader from './AppHeader';
 import Box from 'grommet/components/Box';
 // import Button from 'grommet/components/Button';
 import Section from 'grommet/components/Section';
@@ -31,8 +30,6 @@ class Report extends Component {
   render () {
     return (
       <Box>
-        <AppHeader />
-
         <Section>
           <Box pad={{vertical: 'large'}}>
             <Box align='center' alignSelf='center' pad={{vertical: 'large'}}>

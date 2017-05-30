@@ -5,7 +5,6 @@ import {updateProduct}  from '../../../actions/product';
 import {PRODUCT_CONSTANTS as c}  from '../../../utils/constants';
 
 import AddIcon from "grommet/components/icons/base/Add";
-import AppHeader from '../../AppHeader';
 import Article from 'grommet/components/Article';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
@@ -289,7 +288,6 @@ class ProductEdit extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Section>
           <Article align="center" pad={{horizontal: 'medium'}} primary={true}>
             <Form onSubmit={this._onSubmit}>

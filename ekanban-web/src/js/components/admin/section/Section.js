@@ -5,7 +5,6 @@ import {initialize}  from '../../../actions/misc';
 import {addSection,removeSection,updateSection}  from '../../../actions/section';
 import {SECTION_CONSTANTS as c}  from '../../../utils/constants';
 
-import AppHeader from '../../AppHeader';
 import Add from "grommet/components/icons/base/Add";
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
@@ -197,7 +196,6 @@ class Sections extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Header fixed={true} size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_section}</span>

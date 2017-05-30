@@ -3,7 +3,6 @@ import { localeData } from '../../reducers/localization';
 import { connect } from 'react-redux';
 import {initialize} from '../../actions/misc';
 
-import AppHeader from '../AppHeader';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Section from 'grommet/components/Section';
@@ -126,7 +125,6 @@ class BarcodeGenerate extends Component {
 
     return (
       <Box>
-        <AppHeader/>
         <Header size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_generate_barcode}</span>
