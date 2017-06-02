@@ -1,4 +1,7 @@
 difference in dev and production mode:
+0. location of Application class:
+    src/main/java/com/example/ekanban/Application.class
+
 1.  src/js/index.js
     : dev
         (function () {
