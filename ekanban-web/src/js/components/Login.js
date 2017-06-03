@@ -148,7 +148,7 @@ class Login extends Component {
         <Box align="end" justify="end" pad={{"horizontal": "large", vertical:"large", between:"large"}}>
           <Box size="auto"  align="center" separator="all" justify="center" colorIndex="light-1" pad={{"horizontal": "medium", vertical:"medium", between:"medium"}} >
 
-            <Heading tag="h1">{this.localeData.app_name_full} {this.localeData.app_version}</Heading>
+            <Heading id="app-heading" tag="h1">{this.localeData.app_name_full} {this.localeData.app_version}</Heading>
             {busyIcon}
             <Form>
               <FormFields>
@@ -162,7 +162,7 @@ class Login extends Component {
               <a style={{color:'blue'}} onClick={this._forgotPasswordClick.bind(this)}>Forgot password?</a>
               <p style={{color:'red'}} >{errorMsg}</p>
               <Footer pad={{"vertical": "small"}}>
-                <Button label="Login" id="btnLogin" fill={true} primary={true}  onClick={this._login.bind(this)} /> <br/>
+                <Button label="Login" id="btn-login" fill={true} primary={true}  onClick={this._login.bind(this)} /> <br/>
               </Footer>
             </Form>
             <Box> (c) 2017 {this.localeData.company_name}</Box>

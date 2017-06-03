@@ -1,7 +1,7 @@
 package com.example.ekanban.util;
 
 import java.io.*;
-import java.net.URL;
+
 import java.util.Properties;
 
 /**
@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public class PropertiesUtil {
 
-    private static final String autPropsFile = getEkanbanHome() + File.separator + "conf" + File.separator + "automation.properties";
+    private static final String autPropsFile = MiscUtil.getEkanbanHome() + File.separator + "conf" + File.separator + "automation.properties";
     private static Properties autProps = new Properties();
 
     /**
@@ -19,11 +19,6 @@ public class PropertiesUtil {
      */
     private PropertiesUtil() {
     }
-
-    public static String getEkanbanHome() {
-        return System.getenv("EKANBAN_HOME");
-    }
-
 
 
     static {

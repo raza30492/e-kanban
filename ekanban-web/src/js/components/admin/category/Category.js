@@ -135,8 +135,8 @@ class Category extends Component {
         <ListItem key={index} justify="between" pad={{vertical:'none',horizontal:'small'}} >
           <span> {c.name} </span>
             <span className="secondary">
-              <Button icon={<Edit />} onClick={this._onEditClick.bind(this, index)} />
-              <Button icon={<Trash />} onClick={this._onRemoveClick.bind(this, index)} />
+              <Button id="btn-edit-category" icon={<Edit />} onClick={this._onEditClick.bind(this, index)} />
+              <Button id="btn-delete-category" icon={<Trash />} onClick={this._onRemoveClick.bind(this, index)} />
             </span>
         </ListItem>
       );
@@ -144,7 +144,7 @@ class Category extends Component {
 
     const layerAdd = (
       <Layer hidden={!adding} onClose={this._onCloseLayer.bind(this, 'add')}  closer={true} align="center">
-        <Form>
+        <Form id="form-add-category">
           <Header><Heading tag="h3" strong={true}>Add New Category</Heading></Header>
           <FormFields>
             <FormField label="Category Name" error={errors.name}>
@@ -152,7 +152,7 @@ class Category extends Component {
             </FormField>
           </FormFields>
           <Footer pad={{"vertical": "medium"}} >
-            <Button icon={busyIcon} label="Add" primary={true}  onClick={this._addCategory.bind(this)} />
+            <Button id="btn-add-submit" icon={busyIcon} label="Add" primary={true}  onClick={this._addCategory.bind(this)} />
           </Footer>
         </Form>
       </Layer>
@@ -160,7 +160,7 @@ class Category extends Component {
 
     const layerEdit = (
       <Layer hidden={!editing} onClose={this._onCloseLayer.bind(this, 'edit')}  closer={true} align="center">
-        <Form>
+        <Form id="form-edit-category">
           <Header><Heading tag="h3" strong={true}>Update Category Details</Heading></Header>
           <FormFields >
             <FormField label="Category Name" error={errors.name}>
@@ -168,7 +168,7 @@ class Category extends Component {
             </FormField>
           </FormFields>
           <Footer pad={{"vertical": "medium"}} >
-            <Button icon={busyIcon} label="Update" primary={true}  onClick={this._updateCategory.bind(this)} />
+            <Button id="btn-edit-submit" icon={busyIcon} label="Update" primary={true}  onClick={this._updateCategory.bind(this)} />
           </Footer>
         </Form>
       </Layer>
@@ -176,18 +176,18 @@ class Category extends Component {
 
     return (
       <Box>
-        <Header size='large' pad={{ horizontal: 'medium' }}>
+        <Header id="page-header" size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_category}</span>
           </Title>
           <Search inline={true} fill={true} size='medium' placeHolder='Search'
             value={searchText} onDOMChange={this._onSearch.bind(this)} />
-          <Button icon={<Add />} onClick={this._onAddClick.bind(this)}/>
+          <Button id="btn-add-category" icon={<Add />} onClick={this._onAddClick.bind(this)}/>
           <Button icon={<HelpIcon />} onClick={this._onHelpClick.bind(this)}/>
         </Header>
         <Section direction="column" pad={{vertical: 'large', horizontal:'small'}}>
           <Box size="large" alignSelf="center" >
-            <List > {items} </List>
+            <List id="list-category" > {items} </List> 
             <ListPlaceholder unfilteredTotal={count} filteredTotal={count} emptyMessage={this.localeData.category_empty_message} />
           </Box>
         </Section>
@@ -197,6 +197,7 @@ class Category extends Component {
     );
   }
 }
+//*[@id="form-add-category"]/div[2]/div/span/input[@name='name']
 
 Category.contextTypes = {
   router: React.PropTypes.object.isRequired

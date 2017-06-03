@@ -440,7 +440,7 @@ class Product extends Component {
 
     return (
       <Box full='horizontal'>
-        <Header size='large' pad={{ horizontal: 'medium' }}>
+        <Header id="page-header" size='large' pad={{ horizontal: 'medium' }}>
           <Title>
             <span>{this.localeData.label_product}</span>
           </Title>

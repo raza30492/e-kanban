@@ -309,7 +309,7 @@ class Followup extends Component {
 
     return (
       <Box>
-        <Header size='large' pad={{ horizontal: 'medium' }}>
+        <Header id="page-header" size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>Followup</span>
           </Title>

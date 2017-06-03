@@ -276,7 +276,7 @@ class Supplier extends Component {
 
     return (
       <Box full='horizontal'>
-        <Header fixed={true} size='large' pad={{ horizontal: 'medium' }}>
+        <Header id="page-header" fixed={true} size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_supplier}</span>
           </Title>

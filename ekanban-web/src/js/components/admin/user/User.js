@@ -327,7 +327,7 @@ class User extends Component {
 
     return (
       <Box>
-        <Header fixed={true} size='large' pad={{ horizontal: 'medium' }}>
+        <Header id="page-header" fixed={true} size='large' pad={{ horizontal: 'medium' }}>
           <Title responsive={false}>
             <span>{this.localeData.label_user}</span>
           </Title>

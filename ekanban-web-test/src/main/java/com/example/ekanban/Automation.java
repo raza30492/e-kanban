@@ -1,60 +1,156 @@
 package com.example.ekanban;
 
+import com.example.ekanban.entity.Flow;
+import com.example.ekanban.entity.Step;
+import com.example.ekanban.entity.Test;
+import com.example.ekanban.util.DbUtil;
+import com.example.ekanban.util.MiscUtil;
 import com.example.ekanban.util.PropertiesUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
- * Created by mtalam on 5/21/2017.
+ * Created by mdzahidraza on 03/06/17.
  */
-public class Automation extends BaseClass {
-    private final Logger logger = LoggerFactory.getLogger(Automation.class);
+public class Automation {
 
-    @Test
-    public void testLogin() {
-        String baseUrl = PropertiesUtil.getProperty("base.url");
-        String email = PropertiesUtil.getProperty("user.email");
-        String password = PropertiesUtil.getProperty("user.password");
+    private static final Logger logger = LoggerFactory.getLogger(Automation.class);
+    private static final Logger LOG_REPORT = LoggerFactory.getLogger("report");
 
-        driver.get(baseUrl);
 
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    private static WebDriver driver;
+
+
+
+    public static void main(String[] args){
+        /*Initialize database from excel file*/
+        DbUtil.initialize();
+        /*Set up Chrome WebDriver*/
+        setUp();
+
+        String baseUrl = PropertiesUtil.getProperty(Constants.BASE_URL);
+
+        List<Flow> flowList = DbUtil.getAllFlow().stream()
+                .filter(flow -> flow.getRun().trim().equalsIgnoreCase("Y"))
+                .collect(Collectors.toList());
+
+
+
+        flowList.forEach(flow -> {
+            LOG_REPORT.info("FLOW: id = {}, description = {}", flow.getId(), flow.getDesc());
+
+            List<Test> tests = DbUtil.getAllTestForFlow(flow).stream()
+                    .filter(test -> test.getRun().trim().equalsIgnoreCase("Y"))
+                    .collect(Collectors.toList());
+
+            tests.forEach(test -> {
+                LOG_REPORT.info("TEST: id = {}, description = {} ", test.getId(), test.getDesc());
+
+                List<Step> steps = DbUtil.getAllStepsForTest(test);
+                //Open url for the test
+                driver.get(baseUrl+ test.getUrl());
+                //Sort by step no in ascending order
+                Collections.sort(steps, Comparator.comparing(Step::getStepNo));
+
+                steps.forEach(step -> {
+                    LOG_REPORT.info("STEP: step no = {}, desc = {}",step.getStepNo(), step.getDesc());
+                    switch (step.getAction()){
+                        case WAIT:
+                            switch (step.getCondition()){
+                                case PRESENCE:  (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(step.getXpath())));
+                                    break;
+                                case ABSENCE:   //(new WebDriverWait(driver, 10)).until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(step.getXpath()))));
+                                    (new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(step.getXpath()))));
+                                    break;
+                                case MATCH_URL: (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains(step.getValue()));
+                                    break;
+                            }
+                            break;
+
+                        case SENDKEY:   driver.findElement(By.xpath(step.getXpath())).sendKeys(step.getValue().trim());
+                            break;
+
+                        case CLICK:     driver.findElement(By.xpath(step.getXpath())).click();
+                            break;
+
+                        case ASSERT:    String actualValue = driver.findElement(By.xpath(step.getXpath())).getText();
+                            if (actualValue.equalsIgnoreCase(step.getValue())){
+                                LOG_REPORT.info("ASSERTION: PASSED, Step: {}", step.getDesc());
+                            }else {
+                                LOG_REPORT.error("ASSERTION:  FAILED, Step: {}, . actual value = {}, expected value = {}", step.getDesc(), actualValue, step.getValue());
+                            }
+                            break;
+
+                        case SEARCH:
+                            List<WebElement> elements = driver.findElements(By.xpath(step.getXpath()));
+                            boolean found = false;
+                            for (WebElement element: elements) {
+                                if (element.findElement(By.tagName("span")).getText().equalsIgnoreCase(step.getValue())) {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (found) {
+                                LOG_REPORT.info("SEARCH: Successful.");
+                            }else {
+                                LOG_REPORT.error("SEARCH: Unsuccessful.");
+                            }
+                            break;
+
+                        case SELECT:
+                            break;
+
+                        case SUBMIT:    driver.findElement(By.xpath(step.getXpath())).click();
+                            break;
+                    }
+
+
+
+                });
+                logger.info("finished executing Test Case: {}", test.getDesc());
+            });
+            logger.info("finished executing flow: {}", flow.getDesc());
+        });
+
+        tearDown();
+    }
+
+    public static void setUp() {
+        logger.info("launching chrome browser");
+        String dName = null;
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if (os.indexOf("win") >= 0) {
+            dName = "chromedriver.exe";
+        }else if (os.indexOf("mac") >= 0) {
+            dName = "chromedriver";
+        }else {
+            logger.error("OS not recognised");
         }
-        //*[@id="content"]/div/div[2]/div[1]/div/div/div/div/form/div/div[1]/span/input
-        driver.findElement(By.xpath("//span/input[@name='email']")).sendKeys(email);
-        driver.findElement(By.xpath("//span/input[@name='password']")).sendKeys(password);
-        driver.findElement(By.xpath("//form/footer/button")).click();
 
-//        try {
-//            driver.manage().wait(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        String userName = null;
-        if (!driver.findElement(By.xpath("//header/nav/a[@href='/profile']")).equals(null)) {
-            userName = driver.findElement(By.xpath("//header/nav/a[@href='/profile']")).getText();
-        }
-        Assert.assertEquals(userName, PropertiesUtil.getProperty("user.name"));
+        System.setProperty("webdriver.chrome.driver", MiscUtil.getEkanbanHome() + File.separator + dName);
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
     }
 
 
-
+    public static void tearDown() {
+        if (driver != null) {
+            logger.info("Closing chrome browser");
+            driver.quit();
+        }
+    }
 }
+
