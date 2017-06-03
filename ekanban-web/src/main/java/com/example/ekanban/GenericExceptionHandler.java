@@ -78,6 +78,7 @@ public class GenericExceptionHandler {
 
     @ExceptionHandler
     ResponseEntity<?> handleConflict(DataIntegrityViolationException e) {
+        e.printStackTrace();
     	String cause = e.getRootCause().getMessage();
     	if(cause.toLowerCase().contains("duplicate")){
     		return response(HttpStatus.CONFLICT, 40901, "Duplicate Entry. Data with same name already exist in database.", e.getRootCause().getMessage(), "");

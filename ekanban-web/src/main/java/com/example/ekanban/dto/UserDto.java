@@ -33,6 +33,8 @@ public class UserDto {
     @Pattern(regexp="[0-9]{10}")
     private String mobile;
 
+    private int retryCount;
+
     private Boolean active;
 
     public UserDto() {
@@ -92,6 +94,14 @@ public class UserDto {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
+    public void setRetryCount(int retryCount) {
+        this.retryCount = retryCount;
     }
 
     public Boolean getActive() {

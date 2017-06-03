@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { localeData } from '../reducers/localization';
 import {initialize}  from '../actions/misc';
 
-import AppHeader from './AppHeader';
 import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
@@ -36,6 +35,9 @@ class Dashboard extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    if (sessionStorage.session == undefined) {
+      this.context.router.push('/');
+    }
     if (!this.props.misc.initialized && nextProps.misc.initialized) {
       this.setState({initializing: false});
       this._loadReport(nextProps.category.products);

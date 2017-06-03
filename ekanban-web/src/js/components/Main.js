@@ -11,11 +11,16 @@ import AppHeader from "./AppHeader";
 class Main extends Component {
   render () {
     const { active } = this.props.nav;
+    let header;
+    console.log(this.context.router.location.pathname);
+    if (this.context.router.location.pathname != '/') {
+      header = <AppHeader />;
+    }
 
     var pane1 = active ? <NavSidebar /> : null;
     var pane2 =  (
       <Box>
-        <AppHeader />
+        {header}
         {this.props.children}
       </Box>
     );
@@ -30,6 +35,10 @@ class Main extends Component {
     );
   }
 }
+
+Main.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 let select = (store) => {
   return {nav: store.nav};

@@ -162,7 +162,7 @@ class Login extends Component {
               <a style={{color:'blue'}} onClick={this._forgotPasswordClick.bind(this)}>Forgot password?</a>
               <p style={{color:'red'}} >{errorMsg}</p>
               <Footer pad={{"vertical": "small"}}>
-                <Button label="Login" fill={true} primary={true}  onClick={this._login.bind(this)} /> <br/>
+                <Button label="Login" id="btnLogin" fill={true} primary={true}  onClick={this._login.bind(this)} /> <br/>
               </Footer>
             </Form>
             <Box> (c) 2017 {this.localeData.company_name}</Box>

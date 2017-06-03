@@ -32,6 +32,9 @@ public class User implements Serializable{
     @Column(name = "role", nullable = false)
     private String role;
 
+    @Column(name = "retry_count")
+    private int retryCount;  //Password change retry count
+
     @Column(name = "active", nullable = false)
     private Boolean active;
 
@@ -110,6 +113,14 @@ public class User implements Serializable{
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public int getRetryCount() {
+        return retryCount;
+    }
+
+    public void setRetryCount(int retryCount) {
+        this.retryCount = retryCount;
     }
 
     public Date getLastUpdated() {

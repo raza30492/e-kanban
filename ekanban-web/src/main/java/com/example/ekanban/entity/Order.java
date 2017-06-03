@@ -40,6 +40,9 @@ public class Order implements Serializable{
     @Column(name = "bin_qty")
     private Long binQty;
 
+    @Column(name = "bin_qty_received")
+    private Long binQtyReceived;
+
     @Column(name = "ordered_at", nullable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderedAt;
@@ -187,6 +190,14 @@ public class Order implements Serializable{
 
     public void setBinQty(Long binQty) {
         this.binQty = binQty;
+    }
+
+    public Long getBinQtyReceived() {
+        return binQtyReceived;
+    }
+
+    public void setBinQtyReceived(Long binQtyReceived) {
+        this.binQtyReceived = binQtyReceived;
     }
 
     @Override

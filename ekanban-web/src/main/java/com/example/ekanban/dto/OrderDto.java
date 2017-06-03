@@ -28,6 +28,8 @@ public class OrderDto {
     //@NotNull
     private Long binQty;
 
+    private Long binQtyReceived;
+
     private Long supplierId;
 
     @Digits(integer = 14,fraction = 0)
@@ -144,6 +146,14 @@ public class OrderDto {
 
     public void setBinQty(Long binQty) {
         this.binQty = binQty;
+    }
+
+    public Long getBinQtyReceived() {
+        return binQtyReceived;
+    }
+
+    public void setBinQtyReceived(Long binQtyReceived) {
+        this.binQtyReceived = binQtyReceived;
     }
 
     @Override
