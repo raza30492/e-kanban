@@ -34,6 +34,9 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
 //    @Override
 //    public void addCorsMappings(CorsRegistry registry) {
-//        registry.addMapping("/**");
+//        registry.addMapping("/api/**")
+//                .allowedOrigins("https://www.jaza-soft.com","https://jaza-soft.com","http://139.59.39.252:8080","http://localhost:9000")
+//                .allowedMethods("GET", "POST" , "PUT", "PATCH", "DELETE");
 //    }
+
 }

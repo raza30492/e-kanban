@@ -10,7 +10,7 @@ import Button from "grommet/components/Button";
 import Menu from "grommet/components/Menu";
 import Close from "grommet/components/icons/base/Close";
 import Anchor from 'grommet/components/Anchor';
-import Footer from "grommet/components/Footer";
+//import Footer from "grommet/components/Footer";
 
 import { navActivate } from '../actions/misc';
 
@@ -65,9 +65,9 @@ class NavSidebar extends Component {
           {links}
           <Anchor label="Help" onClick={this._onHelpClick.bind(this)}/>
         </Menu>
-        <Footer pad={{horizontal: 'medium', vertical: 'small'}}>
+        {/* <Footer pad={{horizontal: 'medium', vertical: 'small'}}>
           <h5> (c)2017 {this.localeData.company_name}</h5>
-        </Footer>
+        </Footer> */}
       </Sidebar>
     );
   }

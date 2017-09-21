@@ -7,7 +7,9 @@ public enum Condition {
 
     PRESENCE("PRESENCE"),
     ABSENCE("ABSENCE"),
-    MATCH_URL("MATCH_URL");
+    MATCH_URL("MATCH_URL"),
+    INVISIBLE("INVISIBLE");
+
 
     private final String value;
 

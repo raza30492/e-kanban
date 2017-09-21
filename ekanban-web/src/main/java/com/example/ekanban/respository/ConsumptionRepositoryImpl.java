@@ -30,7 +30,7 @@ public class ConsumptionRepositoryImpl {
         int currMonth = MiscUtil.getCurrentMonth();
         try {
             conn = dataSource.getConnection();
-            String formatStr = "select * from ekanban.consumption \n "+
+            String formatStr = "select * from consumption \n "+
                     "   where (product_id = ? and year = %d and month <= %d) or (product_id = ? and year = %d and month > %d)";
 
             String sql = String.format(formatStr, currYear, currMonth, currYear - 1, currMonth);
@@ -63,7 +63,7 @@ public class ConsumptionRepositoryImpl {
         Long result = 0L;
         try {
             conn = dataSource.getConnection();
-            String formatStr = "select max(value) as max_value from ekanban.consumption \n "+
+            String formatStr = "select max(value) as max_value from consumption \n "+
                             "   where (product_id = ? and year = %d and month <= %d) or (product_id = ? and year = %d and month > %d)";
 
             String sql = String.format(formatStr, currYear, currMonth, currYear - 1, currMonth);
@@ -96,7 +96,7 @@ public class ConsumptionRepositoryImpl {
         Long result = 0L;
         try {
             conn = dataSource.getConnection();
-            String formatStr = "select avg(value) as avg_value from ekanban.consumption \n "+
+            String formatStr = "select avg(value) as avg_value from consumption \n "+
                     "   where (product_id = ? and year = %d and month <= %d) or (product_id = ? and year = %d and month > %d)";
 
             String sql = String.format(formatStr, currYear, currMonth, currYear - 1, currMonth);

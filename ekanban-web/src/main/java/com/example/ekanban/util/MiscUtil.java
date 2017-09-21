@@ -206,6 +206,7 @@ public class MiscUtil {
         Path root = Paths.get(properties.getLocation());
         try {
             PdfWriter docWriter = PdfWriter.getInstance(document, new FileOutputStream(root.resolve(productId + ".pdf").toFile()));
+
             document.open();
             PdfPTable mainTable = new PdfPTable(2);
             mainTable.setWidthPercentage(100f);

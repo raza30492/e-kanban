@@ -2,8 +2,7 @@ package com.example.ekanban.entity;
 
 import com.example.ekanban.Action;
 import com.example.ekanban.Condition;
-import com.example.ekanban.Element;
-import com.opencsv.bean.CsvBindByName;
+import com.example.ekanban.Occurence;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +30,12 @@ public class Step implements Serializable{
 
     @Column(name = "condition")
     private String condition;
+
+    @Column(name = "occurence")
+    private String occurence;
+
+    @Column(name = "element_no")
+    private int elementNo;
 
     @Column(name = "action")
     private String action;
@@ -108,14 +113,31 @@ public class Step implements Serializable{
         this.test = test;
     }
 
+    public Occurence getOccurence() {
+        return Occurence.parse(occurence);
+    }
+
+    public void setOccurence(Occurence occurence) {
+        this.occurence = occurence.getValue();
+    }
+
+    public int getElementNo() {
+        return elementNo;
+    }
+
+    public void setElementNo(int elementNo) {
+        this.elementNo = elementNo;
+    }
+
     @Override
     public String toString() {
         return "Step{" +
                 "id=" + id +
-                ", testId=" + test.getId() +
                 ", stepNo=" + stepNo +
                 ", desc='" + desc + '\'' +
                 ", condition='" + condition + '\'' +
+                ", occurence='" + occurence + '\'' +
+                ", elementNo=" + elementNo +
                 ", action='" + action + '\'' +
                 ", xpath='" + xpath + '\'' +
                 ", value='" + value + '\'' +

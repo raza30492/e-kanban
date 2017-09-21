@@ -59,7 +59,14 @@ public class InventoryService {
             product.setStkOnFloor(binQty*(binsInStock-1));
             product.setLastScanned(new Date());  //Set Last scanned value to now. used for aging calculation
             Consumption consumption = consumptionRepository.findByProductAndYearAndMonth(product, MiscUtil.getCurrentYear(),MiscUtil.getCurrentMonth());
-            consumption.setValue(consumption.getValue()+binQty);
+            if (consumption != null) {
+                consumption.setValue(consumption.getValue()+binQty);
+            }else {
+                consumption = new Consumption(MiscUtil.getCurrentYear(), MiscUtil.getCurrentMonth(),binQty);
+                consumption.setProduct(product);
+                consumptionRepository.save(consumption);
+            }
+
         }
         inventory2.setBinState(BinState.parse(inventory.getBinState()));
         return mapper.map(inventory2, InventoryDto.class);

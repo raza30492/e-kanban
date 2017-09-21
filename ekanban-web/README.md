@@ -26,3 +26,5 @@ difference in dev and production mode:
     spring.datasource.url = jdbc:mysql://localhost:3306/ekanban
     spring.datasource.username = root
     spring.datasource.password = zahid
+
+4. make sure, build is done using grommet-toolbox.config.js.prod

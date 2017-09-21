@@ -18,6 +18,43 @@ import Heading from 'grommet/components/Heading';
 import Layer from 'grommet/components/Layer';
 import Spinning from 'grommet/components/icons/Spinning';
 
+
+const draw = () => {
+  const htmlCanvas = document.getElementById('canvas');
+  const  context = htmlCanvas.getContext('2d');
+  
+ // Start listening to resize events and draw canvas.
+  initialize();
+
+  function initialize() {
+    window.addEventListener('resize', resizeCanvas, false);
+    resizeCanvas();
+  }
+
+  function redraw() {
+    context.globalAlpha = 0.9;
+    var lingrad = context.createLinearGradient(0, 0, window.innerWidth, window.innerHeight);
+    lingrad.addColorStop(0, '#FF7F50');
+    //lingrad.addColorStop(0.5, '#26C000');
+    lingrad.addColorStop(1, '#135058');
+    context.fillStyle = lingrad;
+    context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+    const rect = document.getElementById('loginBox').getBoundingClientRect();
+    const x = rect.left, y = rect.top;
+    const width = rect.right - rect.left;
+    const height = rect.bottom - rect.top;
+
+    context.clearRect(x, y,width,height);
+  }
+
+  function resizeCanvas() {
+    htmlCanvas.width = window.innerWidth;
+    htmlCanvas.height = window.innerHeight;
+    redraw();
+  }
+};
+
 class Login extends Component {
   constructor () {
     super();
@@ -53,6 +90,12 @@ class Login extends Component {
     }
     if (sessionStorage.session == 'true') {
       this.context.router.push('/dashboard');
+    }
+  }
+
+  componentDidUpdate (prevProps, prevState) {
+    if (!this.state.initializing) {
+      draw();
     }
   }
 
@@ -143,10 +186,11 @@ class Login extends Component {
 
     const busyIcon = this.props.user.busy ? <Spinning /> : null;
     return (
-
-      <Box pad={{horizontal: 'large', vertical: "large"}} wrap={true}  full="vertical" texture="url(/andon-system/static/img/cover.jpg)" >
+      <Box pad={{horizontal: 'large', vertical: "large"}} wrap={true}  full="vertical"  >
+        <canvas id='canvas' style={{position: 'absolute', left: 0, top: 0}} >
+        </canvas>
         <Box align="end" justify="end" pad={{"horizontal": "large", vertical:"large", between:"large"}}>
-          <Box size="auto"  align="center" separator="all" justify="center" colorIndex="light-1" pad={{"horizontal": "medium", vertical:"medium", between:"medium"}} >
+          <Box id='loginBox' size="auto"  align="center" separator="all" justify="center" colorIndex="light-1" pad={{"horizontal": "medium", vertical:"medium", between:"medium"}} >
 
             <Heading id="app-heading" tag="h1">{this.localeData.app_name_full} {this.localeData.app_version}</Heading>
             {busyIcon}
@@ -165,7 +209,7 @@ class Login extends Component {
                 <Button label="Login" id="btn-login" fill={true} primary={true}  onClick={this._login.bind(this)} /> <br/>
               </Footer>
             </Form>
-            <Box> (c) 2017 {this.localeData.company_name}</Box>
+            <Box> Copyright (c) 2017 {this.localeData.company_name}</Box>
           </Box>
         </Box>
         {layerForgotPassword}

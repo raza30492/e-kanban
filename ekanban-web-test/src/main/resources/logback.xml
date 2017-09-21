@@ -30,7 +30,7 @@
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="report" level="DEBUG" additivity="false">
+    <logger name="report" level="INFO" additivity="false">
         <appender-ref ref="REPORT" />
     </logger>
     <!-- Strictly speaking, the level attribute is not necessary since -->

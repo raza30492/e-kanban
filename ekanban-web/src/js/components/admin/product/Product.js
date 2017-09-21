@@ -178,7 +178,7 @@ class Product extends Component {
     let value = event.target.value;
     products = products.filter(p => p.name.toLowerCase().includes(value.toLowerCase()) || p.itemCode.toLowerCase().includes(value.toLowerCase()));
     this.setState({searchText: value});
-    if (value.length > 0) {
+    if (value.length == 0) {
       this._loadProduct(products,filter,sort,1);
     }else{
       this._loadProduct(products,{},sort,1);

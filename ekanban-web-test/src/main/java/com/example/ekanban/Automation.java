@@ -41,7 +41,7 @@ public class Automation {
         setUp();
 
         String baseUrl = PropertiesUtil.getProperty(Constants.BASE_URL);
-
+        /* filter only flows that need to be run*/
         List<Flow> flowList = DbUtil.getAllFlow().stream()
                 .filter(flow -> flow.getRun().trim().equalsIgnoreCase("Y"))
                 .collect(Collectors.toList());
@@ -57,7 +57,6 @@ public class Automation {
 
             tests.forEach(test -> {
                 LOG_REPORT.info("TEST: id = {}, description = {} ", test.getId(), test.getDesc());
-
                 List<Step> steps = DbUtil.getAllStepsForTest(test);
                 //Open url for the test
                 driver.get(baseUrl+ test.getUrl());
@@ -65,13 +64,13 @@ public class Automation {
                 Collections.sort(steps, Comparator.comparing(Step::getStepNo));
 
                 steps.forEach(step -> {
-                    LOG_REPORT.info("STEP: step no = {}, desc = {}",step.getStepNo(), step.getDesc());
+                    LOG_REPORT.debug("STEP: step no = {}, desc = {}",step.getStepNo(), step.getDesc());
                     switch (step.getAction()){
                         case WAIT:
                             switch (step.getCondition()){
                                 case PRESENCE:  (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath(step.getXpath())));
                                     break;
-                                case ABSENCE:   //(new WebDriverWait(driver, 10)).until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(step.getXpath()))));
+                                case INVISIBLE:   //(new WebDriverWait(driver, 10)).until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.xpath(step.getXpath()))));
                                     (new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOf(driver.findElement(By.xpath(step.getXpath()))));
                                     break;
                                 case MATCH_URL: (new WebDriverWait(driver, 10)).until(ExpectedConditions.urlContains(step.getValue()));
@@ -79,10 +78,18 @@ public class Automation {
                             }
                             break;
 
-                        case SENDKEY:   driver.findElement(By.xpath(step.getXpath())).sendKeys(step.getValue().trim());
+                        case SENDKEY:   WebElement e = driver.findElement(By.xpath(step.getXpath()));
+                                        e.clear();
+                                        e.sendKeys(step.getValue().trim());
                             break;
 
-                        case CLICK:     driver.findElement(By.xpath(step.getXpath())).click();
+                        case CLICK:
+                            if (step.getOccurence() == Occurence.SINGLE){
+                                driver.findElement(By.xpath(step.getXpath())).click();
+                            }else if (step.getOccurence() == Occurence.MULTIPLE) {
+                                List<WebElement> elements = driver.findElements(By.xpath(step.getXpath()));
+                                elements.get(step.getElementNo()-1).click();
+                            }
                             break;
 
                         case ASSERT:    String actualValue = driver.findElement(By.xpath(step.getXpath())).getText();

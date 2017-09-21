@@ -3,7 +3,7 @@ module.exports = {
   "app_name_full": "e-Kanban",
   "app_name_help": "e-Kanban Online Help",
   "app_version": "1.02",
-  "company_name": "Raza Enterprises",
+  "company_name": "Jaza Software (OPC) Private Limited.",
 
   /*/////////////////// Label /////////////////////*/
   "label_home": "Home",

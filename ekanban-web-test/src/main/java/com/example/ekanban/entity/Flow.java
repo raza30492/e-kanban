@@ -20,15 +20,12 @@ public class Flow implements Serializable{
 
     @Id
     @Column(name = "flow_id")
-    @CsvBindByName(column = "FLOW ID")
     private Long id;
 
     @Column(name = "desc")
-    @CsvBindByName(column = "DESC")
     private String desc;
 
     @Column(name = "run")
-    @CsvBindByName(column = "RUN")
     private String run;
 
     @OneToMany(mappedBy = "flow", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

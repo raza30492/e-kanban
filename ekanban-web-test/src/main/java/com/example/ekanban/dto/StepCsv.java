@@ -22,6 +22,12 @@ public class StepCsv {
     @CsvBindByName(column = "CONDITION")
     private String condition;
 
+    @CsvBindByName(column = "OCCURENCE")
+    private String occurence;
+
+    @CsvBindByName(column = "ELEMENT NO")
+    private Double elementNo;
+
     @CsvBindByName(column = "ACTION")
     private String action;
 
@@ -95,6 +101,22 @@ public class StepCsv {
         this.value = value;
     }
 
+    public String getOccurence() {
+        return occurence;
+    }
+
+    public void setOccurence(String occurence) {
+        this.occurence = occurence;
+    }
+
+    public Double getElementNo() {
+        return elementNo;
+    }
+
+    public void setElementNo(Double elementNo) {
+        this.elementNo = elementNo;
+    }
+
     @Override
     public String toString() {
         return "StepCsv{" +
@@ -103,6 +125,8 @@ public class StepCsv {
                 ", stepNo=" + stepNo +
                 ", desc='" + desc + '\'' +
                 ", condition='" + condition + '\'' +
+                ", occurence='" + occurence + '\'' +
+                ", elementNo=" + elementNo +
                 ", action='" + action + '\'' +
                 ", xpath='" + xpath + '\'' +
                 ", value='" + value + '\'' +

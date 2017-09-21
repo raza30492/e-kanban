@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
-@Table(indexes = @Index(columnList = "user_name,email"))
+@Table(name = "users",indexes = @Index(columnList = "user_name,email"))
 public class User implements Serializable{
     @Id
     @Column(name = "user_id", nullable = false, unique = true)
